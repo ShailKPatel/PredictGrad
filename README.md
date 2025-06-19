@@ -44,7 +44,7 @@ The project consists of two main tasks:
 * **Semester Totals:**
 
   * `Sem1_Core_Theory_Total` = Math-1 + Physics + Java-1 + SE (Theory only)
-  * `Sem2_Core_Theory_Total` = Math-2 + DSJ + DBMS + ELEC + Java-2 (Theory only)
+  * `Sem2_Core_Theory_Total` = Math-2 + DSJ + DBMS + FEE + Java-2 (Theory only)
   * `Sem3_Core_Theory_Total` = Math-3 + DE + FSD + Python (Theory only)
 * **Percentiles:**
 
