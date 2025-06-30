@@ -30,3 +30,14 @@ Bagging+DT-Tuned,BayesCV-Tuned-Recall-Max-5Fold,0.8688,0.7654,0.5129,0.6073
 Bagging+DT-Balanced-Tuned,BaggingDT+Balanced+BayesCV-Recall,0.7748,0.4725,0.8007,0.5914
 AdaBoostClassifier,AdaBoost-5Fold-Preprocessed,0.8688,0.7804,0.5067,0.605
 AdaBoostClassifier-Tuned,"AdaBoost-Tuned-SAMME-OrderedDict({'classifier__learning_rate': 1.0, 'classifier__n_estimators': 180})",0.8619,0.7244,0.5271,0.6048
+BalancedBagging-DecisionTree,Bagging+Balanced+DT(max_depth=6)+5Fold,0.8205,0.5568,0.7531,0.6332
+BalancedBagging-DecisionTree,Bagging+Balanced+DT(max_depth=6)+5Fold,0.8205,0.5568,0.7531,0.6332
+EasyEnsembleClassifier,Ensemble+Undersampling+AdaBoost+5Fold,0.8011,0.509,0.8011,0.6191
+EasyEnsembleClassifier+ThresholdTuning,EEC-ThresholdTuning-5Fold,0.8053,0.5155,0.8145,0.6276
+EasyEnsemble-Top20Feat+Thresh,5Fold-EEC+Top20Selector+ThreshTuned-0.50,0.797,0.5018,0.8152,0.6186
+BalancedBagging-LGBM,5Fold-BBC+LGBM-ThresholdTuned-0.50,0.8329,0.5719,0.7674,0.6523
+Stacking-CatLGBMSVCBBC,StackingCatLGBMSVCBBC+LogRegMeta+ThreshTuned-0.35,0.866,0.6772,0.6775,0.6716
+VotingEnsemble-XGB+Bagging+CatBoost,"SoftVoting-5Fold-[2,1,2]-Thresh0.45",0.8674,0.7265,0.5816,0.6369
+ManualSoftVoting-XGB+Easy+CatBoost,"ManualSoftVoting-Weights[2,1,2]-Thresh0.45",0.8647,0.7322,0.554,0.6195
+ManualSoftVoting-Cat+Ada+SVC,"ManualSoftVoting-Weights[1,2,2]-Thresh0.45",0.8674,0.7665,0.5269,0.6127
+Stacking-EEC+BBC-LGBM+CatBoost,Stack[RidgeCV]-Thresh0.4,0.8591,0.8762,0.3623,0.5058
