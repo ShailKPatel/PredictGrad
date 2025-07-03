@@ -1,112 +1,147 @@
-# PredictGrad
+# PredictGrad: Academic Risk Prediction for Engineering Students
 
-**Overview**
-
-PredictGrad is a machine learning pipeline aimed at forecasting the academic performance of engineering students in their core Semester 3 subjects—Math-3, Digital Electronics (DE), Full Stack Development (FSD), and Python. The goal is to use these predictions to identify students at risk of a significant academic drop and enable early intervention strategies.
-
-**Dataset**
-
-* **Source:** Digitized official academic records from a local engineering college
-* **File:** `student_performance_dataset.csv`
-* **Size:** 905 students, 56 features (after cleaning)
-* **Contents:**
-
-  * Student demographics (Branch, Gender, Religion)
-  * Subject-wise theory and practical marks
-  * Subject-wise attendance
-  * Engineered academic metrics
+PredictGrad is a machine learning project designed to identify engineering students at academic risk by forecasting their future academic performance. The system predicts Semester 3 core subject marks using data from earlier semesters and flags students likely to experience a significant decline in performance. These insights can support targeted academic interventions and prevent longer-term performance drops.
 
 ---
 
 ## Problem Statement
 
-The project consists of two main tasks:
+This project tackles a two-stage prediction problem:
 
-1. **Regression Models:**
-   Predict raw marks for each Semester 3 core subject (Math-3, DE, FSD, Python) using features from Semesters 1 and 2.
+### 1. Subject-wise Mark Prediction (Regression)
 
-2. **Risk Classification Model:**
-   Using the predicted Semester 3 marks, calculate `Sem3_Percentile`, then define a binary flag `Sem3_Risk_Flag = 1` if a student's percentile drops by ≥10 points compared to `Sem2_Percentile`. This flag becomes the target for a classification model.
+Predict raw theory marks in each core Semester 3 subject using Semester 1 and 2 data:
+
+* **Math-3**
+* **Digital Electronics (DE)**
+* **Full Stack Development (FSD)**
+* **Python**
+
+Each subject is modeled independently to account for unique difficulty levels and performance patterns. The models use features like previous marks, attendance, and engineered aggregates.
+
+### 2. Academic Risk Detection (Classification)
+
+Based on the predicted Semester 3 marks, the system calculates the total and percentile rank of each student. A student is flagged as at risk if their predicted percentile drops by 10 or more points compared to their Semester 2 percentile.
+
+The risk flag (**Sem3_Risk_Flag**) becomes the target variable for a binary classification model. The classifier is trained using both original features and predicted marks, allowing it to learn patterns associated with sudden academic decline.
 
 ---
 
-## Data Preprocessing
+## Dataset
 
-* **Dropout Filtering:** Removed rows corresponding to dropouts.
-* **Anonymization:** Student names and IDs were dropped and replaced with anonymized identifiers.
-* **Encoding:** Gender and Religion were inferred from names using GPT, with acknowledgment of possible noise.
-* **Cleaning:** All categorical features were one-hot encoded.
+This project uses a structured dataset of academic records collected from a local engineering college, covering three semesters of performance data for undergraduate students across Computer Engineering and related programs.
 
----
+**Key Details:**
 
-## Feature Engineering
+* **Source:** Digitized and anonymized academic records
+* **File:** `student_performance_dataset.csv`
+* **Total Students:** 905
+* **Features:** 56 columns including demographics, theory and practical marks, and attendance
+* **Semesters:** 1, 2, and 3
+* **Subjects:**
+    * Core subjects (e.g., Math, Java, Python) used for prediction and roll assignment
+    * Non-core subjects (e.g., Law, Environmental Science) included for completeness but typically excluded from modeling
+* **Marks:** All marks (theory and practical) are on a 0–100 scale
+* **Attendance:** Available for Semesters 1 and 2 (as percentage); not recorded for Semester 3
 
-* **Semester Totals:**
+**Privacy Measures:**
 
-  * `Sem1_Core_Theory_Total` = Math-1 + Physics + Java-1 + SE (Theory only)
-  * `Sem2_Core_Theory_Total` = Math-2 + DSJ + DBMS + FEE + Java-2 (Theory only)
-  * `Sem3_Core_Theory_Total` = Math-3 + DE + FSD + Python (Theory only)
-* **Percentiles:**
+* All student identifiers have been anonymized.
+* Gender and Religion were inferred algorithmically from names and may contain classification noise.
 
-  * Calculated percentile scores for each semester total column.
-
-    * `Sem1_Percentile`, `Sem2_Percentile`, `Sem3_Percentile`
-* **Output File:**
-  All processed columns stored in `student_performance_with_percentiles.csv`.
+This dataset forms the backbone of both regression and classification pipelines in PredictGrad.
 
 ---
 
 ## Regression Modeling
 
-Each Semester 3 subject is modeled independently using a supervised regression approach.
+To forecast marks in Semester 3 core subjects, independent regression models were built for each subject using prior academic data (Semesters 1 and 2). Each subject underwent a separate hyperparameter search, testing 56 different model pipelines that combined preprocessing, regressors, and tuning strategies.
 
-**Evaluation Metric:**
-We use **Mean Absolute Error (MAE)** as the primary evaluation metric.
+Although each subject was modeled independently, the same pipeline architecture emerged as the best performer in all four cases.
 
-* **Why MAE?**
+**Best Model Architecture (All Subjects):**
 
-  * MAE directly represents the average deviation in marks, making it easy to interpret for stakeholders.
-  * It treats all errors equally, which is ideal when the goal is to minimize overall prediction drift, not just extreme outliers.
-  * Unlike RMSE, MAE avoids exaggerating the impact of a few high-error predictions.
+* **Model:** Voting Regressor (Ridge + Lasso + ElasticNet)
+* **Preprocessing:** OneHot Encoding + RobustScaler
+* **Validation Strategy:** Repeated 5-Fold Cross-Validation
+* **Hyperparameter Tuning:** BayesSearchCV
 
----
+**Model Comparison by Subject**
 
-## Subject Models (in progress)
+| Subject | Models Tried | Best Model Description                                                                     | Cross-Validation MAE | Test MAE |
+| :------ | :----------- | :----------------------------------------------------------------------------------------- | :------------------- | :------- |
+| Math-3  | 56           | Voting Regressor (Ridge + Lasso + ElasticNet), OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV | 6.3179               | 6.97     |
+| DE      | 56           | Voting Regressor (Ridge + Lasso + ElasticNet), OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV | 7.1206               | 7.10     |
+| FSD     | 56           | Voting Regressor (Ridge + Lasso + ElasticNet), OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV | 6.5837               | 6.65     |
+| Python  | 56           | Voting Regressor (Ridge + Lasso + ElasticNet), OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV | 5.1607               | 5.71     |
 
-Each subject will have a dedicated regression model trained with 5-fold cross-validation. The following subjects are being modeled:
-
-* Math-3 Theory (`Math-3 Theory`)
-* Digital Electronics Theory (`DE Theory`)
-* Full Stack Development Theory (`FSD Theory`)
-* Python Theory (`Python Theory`)
-
-Each model is trained on features from Semesters 1 and 2 including:
-
-* Theory/practical marks
-* Attendance percentages
-* Engineered totals
-* One-hot encoded categorical data
+These predictions were later used to compute Semester 3 percentile ranks, which formed the basis for academic risk classification.
 
 ---
 
-## Risk Detection
+## Risk Classification Model
 
-After predicting Semester 3 subject marks:
+After predicting individual subject marks, the system computes a student's **Sem3_Percentage** and converts it into a percentile rank (**Sem3_Percentile**). A student is flagged as "at risk" if their predicted **Sem3_Percentile** drops by 10 or more points compared to their **Sem2_Percentile**.
 
-1. We calculate `Sem3_Core_Theory_Total` from the predictions.
-2. Percentiles are recalculated.
-3. A risk flag `Sem3_Risk_Flag` is generated:
+The target variable for classification is:
+$$Sem3\_Risk\_Flag = 1 \quad \text{if} \quad Sem3\_Percentile \leq Sem2\_Percentile - 10$$
+$$Sem3\_Risk\_Flag = 0 \quad \text{otherwise}$$
 
-   * 1 if `Sem3_Percentile` drops by ≥10 compared to `Sem2_Percentile`
-   * 0 otherwise
+To ensure this prediction is made only from Semester 1 and 2 data (i.e., information available before the student enters Semester 3), no predicted Semester 3 marks or future data are used as model input.
 
-This flag serves as the label for the final binary classification model aimed at detecting at-risk students.
+**Model Search:**
+
+A total of 52 classification pipelines were evaluated using techniques such as class balancing, stacking, and threshold optimization.
+
+**Best Performing Classifier:**
+
+* **Type:** Stacking Ensemble
+* **Base Learners:** CatBoost, BalancedBaggingClassifier (LGBM), ExtraTrees
+* **Meta Learner:** Logistic Regression
+* **Threshold Tuning:** Optimal threshold identified at 0.49 for F1-recall tradeoff
+
+**Performance Summary:**
+
+| Metric      | Cross-Validation | Test Set |
+| :---------- | :--------------- | :------- |
+| Accuracy    | 0.6849           | 0.6349   |
+| Precision   | 0.3623           | 0.3300   |
+| Recall      | 0.7048           | 0.7048   |
+| F1-Score    | 0.4735           | 0.5100   |
+
+---
+
+## Streamlit App
+
+The entire PredictGrad pipeline has been deployed using Streamlit to allow users to interact with the models and explore the dataset.
+
+**App Link:**
+
+[App Link: Coming Soon]
+
+**App Pages:**
+
+* **Welcome:** Introduction to the project and its objectives.
+* **Predict Risk:** Upload student data or select a student to test the model and predict academic risk.
+* **Data Insights:** Explore the dataset, view distributions, and understand key feature summaries.
+* **Explain Prediction:** Learn about the model’s predictions with the help of Exploratory Data Analysis (EDA) and Explainable AI (XAI) techniques.
+* **Feedback:** Leave comments and suggestions for improvements.
+* **Credits:** Acknowledgements for the tools and contributors involved.
+
+---
+
+## Tools & Techniques
+
+* **Modeling:** scikit-learn, CatBoost, LightGBM, ExtraTrees
+* **Optimization:** BayesSearchCV
+* **EDA/XAI:** SHAP, Seaborn, Matplotlib
+* **Deployment:** Streamlit
 
 ---
 
 ## Contact
 
-For questions, suggestions, or collaboration opportunities, feel free to connect via LinkedIn:
-[https://www.linkedin.com/in/shail-k-patel/](https://www.linkedin.com/in/shail-k-patel/)
+For any questions, collaboration, or feedback:
 
----
+**Shail K Patel**
+LinkedIn: [Shail K Patel](https://www.linkedin.com/in/shailkpatel/)
