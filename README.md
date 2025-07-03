@@ -91,23 +91,30 @@ To ensure this prediction is made only from Semester 1 and 2 data (i.e., informa
 
 **Model Search:**
 
-A total of 52 classification pipelines were evaluated using techniques such as class balancing, stacking, and threshold optimization.
+A total of 50 classification pipelines were evaluated using techniques such as class balancing, stacking, and threshold optimization.
 
 **Best Performing Classifier:**
 
-* **Type:** Stacking Ensemble
+* **Type:** StackingClassifier
 * **Base Learners:** CatBoost, BalancedBaggingClassifier (LGBM), ExtraTrees
-* **Meta Learner:** Logistic Regression
-* **Threshold Tuning:** Optimal threshold identified at 0.49 for F1-recall tradeoff
+* **Meta Learner:** Logistic Regression (`predict_proba` passthrough)  
+* **Threshold Tuning:** Optimal threshold identified at 0.500 for F1-recall tradeoff
+* **Preprocessing & Feature Selection:**
+    OneHotEncoder + Mutual Information (Top 40)  
+    Boruta selection from Top 40
+
+* **Cross-Validation & Threshold Tuning:**
+    5-Fold Stratified Cross-Validation  
+    F1 threshold sweep from 0.2 to 0.7
 
 **Performance Summary:**
 
 | Metric      | Cross-Validation | Test Set |
 | :---------- | :--------------- | :------- |
-| Accuracy    | 0.6849           | 0.6349   |
-| Precision   | 0.3623           | 0.3300   |
-| Recall      | 0.7048           | 0.7048   |
-| F1-Score    | 0.4735           | 0.5100   |
+| Accuracy    | 0.6878           | 0.6740   |
+| Precision   | 0.3611           | 0.3286   |
+| Recall      | 0.7123           | 0.6571   |
+| F1-Score    | 0.4793           | 0.4381   |
 
 ---
 
