@@ -34,8 +34,8 @@ This project uses a structured dataset of academic records collected from a loca
 **Key Details:**
 
 * **Source:** Digitized and anonymized academic records
-* **File:** `student_performance_dataset.csv`
-* **Total Students:** 905
+[**File:** `student_performance_dataset.csv`](https://github.com/ShailKPatel/PredictGrad/blob/main/dataset/student_performance_dataset.csv)* 
+**Total Students:** 905
 * **Features:** 56 columns including demographics, theory and practical marks, and attendance
 * **Semesters:** 1, 2, and 3
 * **Subjects:**
@@ -137,6 +137,87 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 * **EDA/XAI:** SHAP, Seaborn, Matplotlib
 * **Deployment:** Streamlit
 
+## File Structure
+
+```text
+├── EDA/
+│   ├── Main Model/
+│   │   ├── EDA.ipynb
+│   │   ├── EDA_Documentation.md
+│   │   ├── model_eda.ipynb
+│   │   ├── model_performance/
+│   │   │   ├── actual_vs_predicted_confusion_matrix.png
+│   │   │   ├── classification_misclass_distribution.png
+│   │   │   ├── grouped_metrics_per_model.png
+│   │   │   ├── shap_comparison_base_models.png
+│   │   │   └── stacking_risk_model_summary.png
+│   │   ├── model_selection.ipynb
+│   │   └── risk_model_metrics.csv
+│   └── SubjectModels/
+│       ├── de_model/
+│       │   ├── de_eda.ipynb
+│       │   ├── de_handler.py
+│       │   ├── de_model.joblib
+│       │   ├── de_model_test_eval.ipynb
+│       │   ├── model_performance/
+│       │   └── model_results_log.csv
+│       ├── fsd_model/
+│       │   ├── fsd_eda.ipynb
+│       │   ├── fsd_handler.py
+│       │   ├── fsd_model.joblib
+│       │   ├── fsd_model_test_eval.ipynb
+│       │   ├── model_performance/
+│       │   └── model_results_log.csv
+│       ├── math3_model/
+│       │   ├── math3_handler.py
+│       │   ├── math3_model.joblib
+│       │   ├── math3_model_test_eval.ipynb
+│       │   ├── math_eda.ipynb
+│       │   ├── model_performance/
+│       │   └── model_results_log.csv
+│       ├── python_model/
+│       │   ├── model_performance/
+│       │   ├── model_results_log.csv
+│       │   ├── python_eda.ipynb
+│       │   ├── python_handler.py
+│       │   ├── python_model.joblib
+│       │   └── python_model_test_eval.ipynb
+│       ├── setup.ipynb
+│       ├── student_performance_dataset.csv
+│       ├── test_dataset.csv
+│       └── train_dataset.csv
+├── LICENSE
+├── README.md
+├── app.py
+├── dataset/
+│   ├── Dataset_Documentaion.md
+│   ├── branch_department_mapping.csv
+│   ├── student_performance_dataset.csv
+│   ├── test_dataset.csv
+│   └── train_dataset.csv
+├── model/
+│   ├── de_handler.py
+│   ├── de_model.joblib
+│   ├── fsd_handler.py
+│   ├── fsd_model.joblib
+│   ├── main_model_handler.py
+│   ├── make_main_model.ipynb
+│   ├── math3_handler.py
+│   ├── math3_model.joblib
+│   ├── python_handler.py
+│   ├── python_model.joblib
+│   └── stacking_risk_model.joblib
+├── pages/
+│   ├── Credits.py
+│   ├── Data_Insights.py
+│   ├── Explain_Predictions.py
+│   ├── Feedback.py
+│   ├── Predict_Student_Risk.py
+│   └── Welcome.py
+└── reviews/
+    ├── recent_reviews.json
+    └── word_count.json
+```
 ---
 
 ## Contact
