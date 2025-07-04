@@ -95,8 +95,8 @@ if uploaded_file:
             st.error(f"CSV is missing required columns: {missing_cols}")
             st.stop()
 
-                # Check if the file has at least 5 columns
-        if df.shape[1] < 5:
+        # Check if the file has at least 5 rows
+        if df.shape[0] < 5:
             st.error(f"CSV must contain at least 5 columns. Found only {df.shape[1]}.")
             st.stop()
 
