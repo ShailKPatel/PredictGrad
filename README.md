@@ -150,7 +150,28 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 ├── EDA/
 │   ├── Main Model/
 │   │   ├── EDA.ipynb
-│   │   ├── EDA_Documentation.md
+│   │   ├── eda_images/
+│   │   │   ├── branch_vs_risk_flag.png
+│   │   │   ├── class_distribution_pie.png
+│   │   │   ├── correlation_heatmap.png
+│   │   │   ├── gender_vs_risk_flag.png
+│   │   │   ├── high_correlation_pairs.png
+│   │   │   ├── high_vif_features.png
+│   │   │   ├── kde_percentile_drop_vs_risk_flag.png
+│   │   │   ├── kde_pred_sem3_vs_risk_flag.png
+│   │   │   ├── kde_sem1_vs_risk_flag.png
+│   │   │   ├── kde_sem2_vs_risk_flag.png
+│   │   │   ├── mutual_information_top25.png
+│   │   │   ├── percentile_drop_vs_risk_flag.png
+│   │   │   ├── pred_sem3_vs_risk_flag.png
+│   │   │   ├── religion_vs_risk_flag.png
+│   │   │   ├── risk_flag_distribution.png
+│   │   │   ├── section1_vs_risk_flag.png
+│   │   │   ├── section2_vs_risk_flag.png
+│   │   │   ├── section3_vs_risk_flag.png
+│   │   │   ├── sem1_vs_risk_flag.png
+│   │   │   ├── sem2_vs_risk_flag.png
+│   │   │   └── top_correlated_features.png
 │   │   ├── model_eda.ipynb
 │   │   ├── model_performance/
 │   │   │   ├── actual_vs_predicted_confusion_matrix.png
@@ -217,13 +238,16 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 ├── pages/
 │   ├── Credits.py
 │   ├── Data_Insights.py
-│   ├── Explain_Predictions.py
+│   ├── Demo_Predict_Student_Risk.py
+│   ├── Feature_Impact.py
 │   ├── Feedback.py
 │   ├── Predict_Student_Risk.py
 │   └── Welcome.py
-└── reviews/
-    ├── recent_reviews.json
-    └── word_count.json
+├── requirements.txt
+├── reviews/
+│   ├── recent_reviews.json
+│   └── word_count.json
+└── try.csv
 ```
 ---
 
