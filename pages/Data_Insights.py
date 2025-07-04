@@ -11,7 +11,7 @@ Explore the underlying dataset powering PredictGrad. Understand how academic, de
 """)
 
 # Paths
-image_dir = os.path.join("EDA", "Main Model", "eda_images")
+image_dir = os.path.join("EDA", "main_model", "eda_images")
 dataset_path = os.path.join("dataset", "student_performance_dataset.csv")
 
 # Load dataset (cached for performance)
