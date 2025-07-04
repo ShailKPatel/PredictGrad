@@ -1,5 +1,6 @@
 import streamlit as st
 import os
+from PIL import Image
 
 # Set page config
 st.set_page_config(page_title="🔍 Feature Impact", layout="wide")
@@ -24,6 +25,14 @@ This analysis explains how different academic and demographic features influence
 Understanding which features drive these predictions helps uncover academic risks early and enables targeted intervention.
 """)
 
+# === Utility to display image if it exists ===
+def show_image(img_dir, img_file, caption):
+    img_path = os.path.join(img_dir, img_file)
+    if os.path.exists(img_path):
+        st.image(Image.open(img_path), caption=caption, use_container_width=True)
+    else:
+        st.error(f"Missing image: `{img_path}`")
+
 # === Subject selector ===
 subject_map = {
     "Digital Electronics (DE)": "de",
@@ -35,27 +44,22 @@ selected_subject = st.selectbox("📘 Select Subject for Feature Analysis", list
 subject_code = subject_map[selected_subject]
 
 # === Subject-level visualizations ===
-base_path = f"EDA/SubjectModels/{subject_code}_model/model_performance"
+st.markdown("## 📊 Subject-Level Model Performance")
+subject_base_path = os.path.join("EDA", "SubjectModels", f"{subject_code}_model", "model_performance")
 
 subject_images = [
-    "optimized_ensemble_model_summary.png",
-    f"{subject_code}_shap_summary.png",
-    f"{subject_code}_feature_importance.png",
-    f"{subject_code}_cv_predictions.png",
-    f"{subject_code}_actual_vs_predicted.png",
-    f"{subject_code}_prediction_errors.png",
-    f"{subject_code}_error_distribution.png",
-    "mae_comparison_by_algorithm.png"
+    ("optimized_ensemble_model_summary.png", "Optimized Ensemble Model Summary"),
+    (f"{subject_code}_shap_summary.png", "SHAP Summary"),
+    (f"{subject_code}_feature_importance.png", "Feature Importances"),
+    (f"{subject_code}_cv_predictions.png", "Cross-Validation Predictions"),
+    (f"{subject_code}_actual_vs_predicted.png", "Actual vs Predicted Marks"),
+    (f"{subject_code}_prediction_errors.png", "Prediction Errors"),
+    (f"{subject_code}_error_distribution.png", "Error Distribution"),
+    ("mae_comparison_by_algorithm.png", "MAE Comparison by Algorithm")
 ]
 
-st.markdown("## 📊 Subject-Level Model Performance")
-
-for img_file in subject_images:
-    full_path = os.path.join(base_path, img_file)
-    if os.path.exists(full_path):
-        st.image(full_path, width=900)
-    else:
-        st.warning(f"Missing visualization: `{img_file}`")
+for file, caption in subject_images:
+    show_image(subject_base_path, file, caption)
 
 # === Academic Risk Classification Visuals ===
 st.markdown("---")
@@ -71,19 +75,14 @@ These visualizations highlight model architecture, performance distribution, and
 - 🔍 SHAP Feature Contributions
 """)
 
-classification_path = "EDA/Main Model/model_performance"
+classification_path = os.path.join("EDA", "Main Model", "model_performance")
 classification_figures = [
-    "stacking_risk_model_summary.png",                  # Model pipeline and final stacking configuration
-    "actual_vs_predicted_confusion_matrix.png",         # Visual summary of classification outcomes
-    "classification_misclass_distribution.png",         # Breakdown of misclassified vs. correctly predicted
-    "grouped_metrics_per_model.png",                    # Model selection performance comparison
-    "shap_comparison_base_models.png"                   # SHAP feature importance across base learners
+    ("stacking_risk_model_summary.png", "Stacking Risk Model Summary"),
+    ("actual_vs_predicted_confusion_matrix.png", "Confusion Matrix"),
+    ("classification_misclass_distribution.png", "Misclassification Distribution"),
+    ("grouped_metrics_per_model.png", "Model Metrics Comparison"),
+    ("shap_comparison_base_models.png", "SHAP Comparison Across Base Models")
 ]
 
-for img_file in classification_figures:
-    full_path = os.path.join(classification_path, img_file)
-    if os.path.exists(full_path):
-        st.image(full_path, width=900)
-    else:
-        st.warning(f"Missing visualization: `{img_file}`")
-
+for file, caption in classification_figures:
+    show_image(classification_path, file, caption)
