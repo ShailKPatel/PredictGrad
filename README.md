@@ -148,72 +148,72 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 
 ```text
 ├── EDA/
-│   ├── Main Model/
-│   │   ├── EDA.ipynb
-│   │   ├── eda_images/
-│   │   │   ├── branch_vs_risk_flag.png
-│   │   │   ├── class_distribution_pie.png
-│   │   │   ├── correlation_heatmap.png
-│   │   │   ├── gender_vs_risk_flag.png
-│   │   │   ├── high_correlation_pairs.png
-│   │   │   ├── high_vif_features.png
-│   │   │   ├── kde_percentile_drop_vs_risk_flag.png
-│   │   │   ├── kde_pred_sem3_vs_risk_flag.png
-│   │   │   ├── kde_sem1_vs_risk_flag.png
-│   │   │   ├── kde_sem2_vs_risk_flag.png
-│   │   │   ├── mutual_information_top25.png
-│   │   │   ├── percentile_drop_vs_risk_flag.png
-│   │   │   ├── pred_sem3_vs_risk_flag.png
-│   │   │   ├── religion_vs_risk_flag.png
-│   │   │   ├── risk_flag_distribution.png
-│   │   │   ├── section1_vs_risk_flag.png
-│   │   │   ├── section2_vs_risk_flag.png
-│   │   │   ├── section3_vs_risk_flag.png
-│   │   │   ├── sem1_vs_risk_flag.png
-│   │   │   ├── sem2_vs_risk_flag.png
-│   │   │   └── top_correlated_features.png
-│   │   ├── model_eda.ipynb
-│   │   ├── model_performance/
-│   │   │   ├── actual_vs_predicted_confusion_matrix.png
-│   │   │   ├── classification_misclass_distribution.png
-│   │   │   ├── grouped_metrics_per_model.png
-│   │   │   ├── shap_comparison_base_models.png
-│   │   │   └── stacking_risk_model_summary.png
-│   │   ├── model_selection.ipynb
-│   │   └── risk_model_metrics.csv
-│   └── SubjectModels/
-│       ├── de_model/
-│       │   ├── de_eda.ipynb
-│       │   ├── de_handler.py
-│       │   ├── de_model.joblib
-│       │   ├── de_model_test_eval.ipynb
-│       │   ├── model_performance/
-│       │   └── model_results_log.csv
-│       ├── fsd_model/
-│       │   ├── fsd_eda.ipynb
-│       │   ├── fsd_handler.py
-│       │   ├── fsd_model.joblib
-│       │   ├── fsd_model_test_eval.ipynb
-│       │   ├── model_performance/
-│       │   └── model_results_log.csv
-│       ├── math3_model/
-│       │   ├── math3_handler.py
-│       │   ├── math3_model.joblib
-│       │   ├── math3_model_test_eval.ipynb
-│       │   ├── math_eda.ipynb
-│       │   ├── model_performance/
-│       │   └── model_results_log.csv
-│       ├── python_model/
-│       │   ├── model_performance/
-│       │   ├── model_results_log.csv
-│       │   ├── python_eda.ipynb
-│       │   ├── python_handler.py
-│       │   ├── python_model.joblib
-│       │   └── python_model_test_eval.ipynb
-│       ├── setup.ipynb
-│       ├── student_performance_dataset.csv
-│       ├── test_dataset.csv
-│       └── train_dataset.csv
+│   ├── SubjectModels/
+│   │   ├── de_model/
+│   │   │   ├── de_eda.ipynb
+│   │   │   ├── de_handler.py
+│   │   │   ├── de_model.joblib
+│   │   │   ├── de_model_test_eval.ipynb
+│   │   │   ├── model_performance/
+│   │   │   └── model_results_log.csv
+│   │   ├── fsd_model/
+│   │   │   ├── fsd_eda.ipynb
+│   │   │   ├── fsd_handler.py
+│   │   │   ├── fsd_model.joblib
+│   │   │   ├── fsd_model_test_eval.ipynb
+│   │   │   ├── model_performance/
+│   │   │   └── model_results_log.csv
+│   │   ├── math3_model/
+│   │   │   ├── math3_handler.py
+│   │   │   ├── math3_model.joblib
+│   │   │   ├── math3_model_test_eval.ipynb
+│   │   │   ├── math_eda.ipynb
+│   │   │   ├── model_performance/
+│   │   │   └── model_results_log.csv
+│   │   ├── python_model/
+│   │   │   ├── model_performance/
+│   │   │   ├── model_results_log.csv
+│   │   │   ├── python_eda.ipynb
+│   │   │   ├── python_handler.py
+│   │   │   ├── python_model.joblib
+│   │   │   └── python_model_test_eval.ipynb
+│   │   ├── setup.ipynb
+│   │   ├── student_performance_dataset.csv
+│   │   ├── test_dataset.csv
+│   │   └── train_dataset.csv
+│   └── main_model/
+│       ├── EDA.ipynb
+│       ├── eda_images/
+│       │   ├── branch_vs_risk_flag.png
+│       │   ├── class_distribution_pie.png
+│       │   ├── correlation_heatmap.png
+│       │   ├── gender_vs_risk_flag.png
+│       │   ├── high_correlation_pairs.png
+│       │   ├── high_vif_features.png
+│       │   ├── kde_percentile_drop_vs_risk_flag.png
+│       │   ├── kde_pred_sem3_vs_risk_flag.png
+│       │   ├── kde_sem1_vs_risk_flag.png
+│       │   ├── kde_sem2_vs_risk_flag.png
+│       │   ├── mutual_information_top25.png
+│       │   ├── percentile_drop_vs_risk_flag.png
+│       │   ├── pred_sem3_vs_risk_flag.png
+│       │   ├── religion_vs_risk_flag.png
+│       │   ├── risk_flag_distribution.png
+│       │   ├── section1_vs_risk_flag.png
+│       │   ├── section2_vs_risk_flag.png
+│       │   ├── section3_vs_risk_flag.png
+│       │   ├── sem1_vs_risk_flag.png
+│       │   ├── sem2_vs_risk_flag.png
+│       │   └── top_correlated_features.png
+│       ├── model_eda.ipynb
+│       ├── model_performance/
+│       │   ├── actual_vs_predicted_confusion_matrix.png
+│       │   ├── classification_misclass_distribution.png
+│       │   ├── grouped_metrics_per_model.png
+│       │   ├── shap_comparison_base_models.png
+│       │   └── stacking_risk_model_summary.png
+│       ├── model_selection.ipynb
+│       └── risk_model_metrics.csv
 ├── LICENSE
 ├── README.md
 ├── app.py
@@ -248,6 +248,7 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 │   ├── recent_reviews.json
 │   └── word_count.json
 └── try.csv
+
 ```
 ---
 

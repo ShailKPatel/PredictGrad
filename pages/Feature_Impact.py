@@ -75,7 +75,7 @@ These visualizations highlight model architecture, performance distribution, and
 - 🔍 SHAP Feature Contributions
 """)
 
-classification_path = os.path.join("EDA", "Main Model", "model_performance")
+classification_path = os.path.join("EDA", "main_model", "model_performance")
 classification_figures = [
     ("stacking_risk_model_summary.png", "Stacking Risk Model Summary"),
     ("actual_vs_predicted_confusion_matrix.png", "Confusion Matrix"),
