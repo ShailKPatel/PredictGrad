@@ -224,9 +224,7 @@ if True:
         df_clean["Predicted Sem 3 Percentage"] = (
             df_clean[sem3_cols].mean(axis=1).round(2)
         )
-        df_clean["Predicted Sem 3 Percentile"] = (
-            df_clean["Predicted Sem 3 Percentage"].rank(pct=True) * 100
-        )
+
 
         model_handler = RiskModelHandler(
             model_path="../model/stacking_risk_model.joblib"
@@ -241,7 +239,6 @@ if True:
                 "Predicted FSD Theory",
                 "Predicted Python Theory",
                 "Predicted Sem 3 Percentage",
-                "Predicted Sem 3 Percentile",
                 "Risk Prediction",
             ]
         ].reset_index(drop=True)
