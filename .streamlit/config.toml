@@ -1,0 +1,7 @@
+[theme]
+base="light"
+primaryColor="#0099e5"            # A cool blue
+backgroundColor="#ffffff"         # White background
+secondaryBackgroundColor="#f0f2f6" # Light grey panels
+textColor="#262730"               # Dark gray/black text
+font="sans serif"
