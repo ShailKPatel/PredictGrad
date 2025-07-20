@@ -69,6 +69,9 @@ review_queue = load_reviews()
 word_count = load_word_count()
 
 # Streamlit UI
+
+st.set_page_config(page_title="Feedback", layout="centered", page_icon='💬')
+
 st.title("📝 Feedbacks")
 
 st.subheader("📜 Recent Reviews")
@@ -88,8 +91,9 @@ if word_count:
 
     if filtered_word_count:
         # Custom color function for a cohesive look (shades of blue)
-        def blue_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
-            return f"hsl(210, 70%, {np.random.randint(40, 80)}%)"
+        def random_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
+            colors = ["rgb(73,11,61)", "rgb(189,30,81)", "rgb(241,184,20)", "rgb(128,173,204)"]
+            return np.random.choice(colors)
 
         # Generate word cloud with improved aesthetics
         wordcloud = WordCloud(
@@ -98,9 +102,9 @@ if word_count:
             background_color="white",  # Lighter background for clarity
             max_words=50,  # Limit to avoid clutter
             min_font_size=12,  # Ensure readability
-            scale=3,  # Higher resolution
+            scale=15,  # Higher resolution
             stopwords=STOPWORDS.union(FILTER_WORDS),  # Double-check stop words
-            color_func=blue_color_func  # Apply custom colors
+            color_func=random_color_func  # Apply custom colors
         ).generate_from_frequencies(filtered_word_count)
 
         # Display word cloud
