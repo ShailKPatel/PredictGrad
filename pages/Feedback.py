@@ -14,8 +14,8 @@ REVIEW_LIMIT = 6
 
 # Expanded filter words to prevent "lol" variations and vandalism
 FILTER_WORDS = {
-    "lol", "lolis", "laughing", "out", "loud",  # Cover "laughing out loud" and variations
-    "haha", "hehe", "lmao", "rofl"  # Other informal laughter terms
+    "lol", "lolis", "laughing", "out", "loud",
+    "haha", "hehe", "lmao", "rofl"
 }
 
 # Load reviews
@@ -42,24 +42,25 @@ def save_word_count(counter):
     with open(WORD_COUNT_PATH, "w", encoding="utf-8") as file:
         json.dump(dict(counter), file)
 
-# Filter words: stop words, "lol" variations, and vandalism
+# Filter words: must be longer than 1 character, alphabetic, and not in stop/filter words
 def should_count_word(word):
-    # Use regex to catch "lol" with special characters (e.g., "lol!")
-    if re.search(r'l+o+l+[!@#$%^&*]*', word.lower()):
+    word = word.lower()
+    if re.search(r'l+o+l+[!@#$%^&*]*', word):
         return False
-    # Check against stop words and filter words
-    return (word.lower() not in STOPWORDS and 
-            word.lower() not in FILTER_WORDS and 
-            not any(fw in word.lower() for fw in FILTER_WORDS))
+    if word in STOPWORDS or word in FILTER_WORDS:
+        return False
+    if len(word) <= 1:
+        return False  # Remove single characters
+    if word.isdigit():
+        return False  # Remove numbers
+    return True
 
 # Check if review contains "lol" or filtered words
 def contains_filtered_words(review):
     words = review.split()
     for word in words:
-        # Check for "lol" variations with regex
         if re.search(r'l+o+l+[!@#$%^&*]*', word.lower()):
             return True
-        # Check for other filter words
         if any(fw in word.lower() for fw in FILTER_WORDS) or word.lower() in FILTER_WORDS:
             return True
     return False
@@ -69,7 +70,6 @@ review_queue = load_reviews()
 word_count = load_word_count()
 
 # Streamlit UI
-
 st.set_page_config(page_title="Feedback", layout="centered", page_icon='💬')
 
 st.title("📝 Feedbacks")
@@ -83,31 +83,31 @@ else:
 
 st.subheader("📊 Word Cloud")
 if word_count:
-    # Filter word_count to remove stop words and filtered words
+    # Filter word_count to remove unwanted words
     filtered_word_count = Counter()
     for word, freq in word_count.items():
         if should_count_word(word):
             filtered_word_count[word.lower()] += freq
 
     if filtered_word_count:
-        # Custom color function for a cohesive look (shades of blue)
+        # Custom color function
         def random_color_func(word, font_size, position, orientation, random_state=None, **kwargs):
             colors = ["rgb(73,11,61)", "rgb(189,30,81)", "rgb(241,184,20)", "rgb(128,173,204)"]
             return np.random.choice(colors)
 
-        # Generate word cloud with improved aesthetics
+        # Create word cloud
         wordcloud = WordCloud(
             width=800,
             height=400,
-            background_color="white",  # Lighter background for clarity
-            max_words=50,  # Limit to avoid clutter
-            min_font_size=12,  # Ensure readability
-            scale=15,  # Higher resolution
-            stopwords=STOPWORDS.union(FILTER_WORDS),  # Double-check stop words
-            color_func=random_color_func  # Apply custom colors
+            background_color="white",
+            max_words=50,
+            min_font_size=10,
+            scale=15,
+            stopwords=STOPWORDS.union(FILTER_WORDS),
+            color_func=random_color_func
         ).generate_from_frequencies(filtered_word_count)
 
-        # Display word cloud
+        # Show word cloud
         fig, ax = plt.subplots(figsize=(10, 5))
         ax.imshow(wordcloud, interpolation="bilinear")
         ax.axis("off")
@@ -121,20 +121,16 @@ else:
 user_review = st.text_area("Got a complaint or suggestion? Drop it here", "")
 if st.button("Submit Review"):
     if user_review:
-        # Check if the review contains filtered words
         if not contains_filtered_words(user_review):
-            # Only save and process the review if it doesn't contain filtered words
             review_queue.append(user_review)
             save_reviews(review_queue)
 
-            # Process words for word count: remove punctuation, normalize case
             words = re.findall(r'\b\w+\b', user_review.lower())
             for word in words:
                 if should_count_word(word):
                     word_count[word] += 1
             save_word_count(word_count)
 
-        # Always show balloons and thanks message, even if review isn't saved
         st.balloons()
         st.success("Review submitted! Thanks for sharing your thoughts!")
         st.rerun()
