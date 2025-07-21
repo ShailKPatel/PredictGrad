@@ -3,12 +3,12 @@ import os
 from PIL import Image
 
 # Set page config
-st.set_page_config(page_title="🔍 Feature Impact")
+st.set_page_config(page_title="Model Analysis", page_icon='🔍', layout='centered')
 
-st.title("🔍 Feature Impact Analysis")
+st.title("🔍 Model Analysis")
 
 st.markdown("""
-Welcome to the Feature Impact page of **PredictGrad**.
+Welcome to the Model Analysis page of **PredictGrad**.
 
 This analysis explains how different academic and demographic features influence predictions across two stages:
 
@@ -52,7 +52,7 @@ with subject_tab:
     
     subject_code = "de"  # Default to Digital Electronics for initial load
         
-    de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"], width=600)
+    de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"], width=550)
         
     with de_tab:
         st.markdown("### Digital Electronics (DE) Model Performance")
