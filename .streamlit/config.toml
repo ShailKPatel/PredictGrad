@@ -1,7 +1,7 @@
 [theme]
-base="light"
-primaryColor="#33b5e5"             # A brighter light blue
-backgroundColor="#ffffff"          # Keep white for clarity
-secondaryBackgroundColor="#e6f4fb" # Very light blue background for panels
-textColor="#1c2b33"                # Slightly softer black
-font="sans serif"
+base="dark"
+primaryColor="#ff6ec7"             # Electric pink
+backgroundColor="#0f0f0f"          # Deep black for contrast
+secondaryBackgroundColor="#1f1f3a" # Dark purple-blue for panels
+textColor="#f8f8ff"                # Ghost white for clarity
+font="monospace"                   # Fun + techy (you can also try 'serif' for a whimsical feel)
