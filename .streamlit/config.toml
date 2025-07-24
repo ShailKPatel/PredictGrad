@@ -1,9 +1,7 @@
-# .streamlit/config.toml
-
 [theme]
 base="light"
-primaryColor="#0099e5"             # A cool blue
-backgroundColor="#ffffff"          # White background
-secondaryBackgroundColor="#f0f2f6" # Light grey panels
-textColor="#262730"                # Dark gray/black text
+primaryColor="#33b5e5"             # A brighter light blue
+backgroundColor="#ffffff"          # Keep white for clarity
+secondaryBackgroundColor="#e6f4fb" # Very light blue background for panels
+textColor="#1c2b33"                # Slightly softer black
 font="sans serif"
