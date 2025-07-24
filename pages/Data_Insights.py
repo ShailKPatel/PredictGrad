@@ -4,7 +4,7 @@ import os
 from PIL import Image
 
 # Page config
-st.set_page_config(page_title="📊 Data Insights | PredictGrad", layout="wide")
+st.set_page_config(page_title="Data Insights", layout="wide", page_icon='📊')
 st.title("📊 Data Insights")
 st.markdown("""
 Explore the underlying dataset powering PredictGrad. Understand how academic, demographic, and administrative features relate to student performance and academic risk.
