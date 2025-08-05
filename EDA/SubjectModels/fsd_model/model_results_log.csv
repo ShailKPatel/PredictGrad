@@ -1,0 +1,57 @@
+Model,Approach,MAE
+Multiple Linear Regression (MSE loss),multivariate regression + 5-Fold cv + one-hot encoding,7.0556
+Quantile Regression (MAE loss),q=0.5 + 5-Fold CV + one-hot encoding,7.0829
+Multiple Linear Regression (MSE loss + High VIF columns dropped),Multivariate regression + 5-Fold CV + one-hot encoding,7.1068
+Quantile Regression (MAE loss High VIF columns dropped),q=0.5 + 5-Fold CV + one-hot encoding,7.0684
+Polynomial Regression (Order 2),5-Fold CV + one-hot encoding + degree 2,26.2905
+Polynomial Regression (Order 2),5-Fold CV + one-hot encoding + degree 2 + high VIF columns dropped,29.925
+Polynomial Regression (Order 3),5-Fold CV + one-hot encoding + degree 3,15.103
+Polynomial Regression (Order 3),5-Fold CV + one-hot encoding + degree 3 + high VIF columns dropped,16.5927
+Polynomial Regression (Order 4),5-Fold CV + one-hot encoding + degree 4,14.1608
+Polynomial Regression (Order 4),5-Fold CV + one-hot encoding + degree 4 + high VIF columns dropped,15.5514
+Support Vector Regression (RBF),5-Fold CV + one-hot encoding + StandardScaler,7.8275
+Support Vector Regression (RBF),5-Fold CV + one-hot encoding + StandardScaler + RBF kernel + high VIF columns dropped,7.864
+Random Forest Regressor,Full-feature regression with 5-Fold CV and OneHotEncoding,6.9107
+Random Forest Regressor (Tuned),"{'regressor__n_estimators': 200, 'regressor__min_samples_split': 2, 'regressor__min_samples_leaf': 2, 'regressor__max_features': 'sqrt', 'regressor__max_depth': 20}",6.9169
+Random Forest Regressor (Tuned),"{'regressor__n_estimators': 1000, 'regressor__min_samples_split': 5, 'regressor__min_samples_leaf': 4, 'regressor__max_features': None, 'regressor__max_depth': None}",6.9078
+Random Forest Regressor (Tuned),"{'regressor__n_estimators': 500, 'regressor__min_samples_split': 10, 'regressor__min_samples_leaf': 3, 'regressor__max_features': 0.5, 'regressor__max_depth': None}",6.8692
+Random Forest Regressor (Tuned),"{'regressor__n_estimators': 100, 'regressor__min_samples_split': 5, 'regressor__min_samples_leaf': 4, 'regressor__max_features': None, 'regressor__max_depth': None}",6.8848
+Random Forest Regressor (Tuned),"{'n_estimators': 1000, 'min_samples_split': 10, 'min_samples_leaf': 3, 'max_features': 0.5, 'max_depth': 30}",6.8577
+Random Forest Regressor (Tuned),"{'regressor__n_estimators': 200, 'regressor__min_samples_split': 10, 'regressor__min_samples_leaf': 2, 'regressor__max_features': 0.5, 'regressor__max_depth': 20}",6.7194
+Random Forest Regressor (Tuned),"{'n_estimators': 1000, 'min_samples_split': 5, 'min_samples_leaf': 2, 'max_features': 0.3, 'max_depth': 15}",6.8385
+XGBoost Regressor,Full-feature regression + OneHotEncoding + 5-Fold CV,7.3677
+XGBoost Regressor,"Tuned (Best Params: {'regressor__colsample_bytree': 1.0, 'regressor__learning_rate': 0.1, 'regressor__max_depth': 3, 'regressor__n_estimators': 100, 'regressor__subsample': 0.9})",6.9806
+XGBoost Regressor(Tuned),"Tuned (Best Params: {'regressor__colsample_bytree': 0.9, 'regressor__learning_rate': 0.05, 'regressor__max_depth': 3, 'regressor__n_estimators': 100, 'regressor__subsample': 0.9})",6.8863
+LightGBM Regressor,Full-feature regression with 5-Fold CV and OneHotEncoding,7.1617
+LightGBM Regressor (Tuned),"Tuned with RandomizedSearchCV (params: {'regressor__subsample': 0.9, 'regressor__num_leaves': 50, 'regressor__n_estimators': 300, 'regressor__max_depth': 5, 'regressor__learning_rate': 0.03, 'regressor__colsample_bytree': 1.0})",6.948
+LightGBM Regressor (Tuned),"Tuned with RandomizedSearchCV (params: {'regressor__subsample': 0.8, 'regressor__num_leaves': 70, 'regressor__n_estimators': 500, 'regressor__min_child_samples': 30, 'regressor__max_depth': 3, 'regressor__learning_rate': 0.01, 'regressor__colsample_bytree': 0.7})",6.8476
+LightGBM Regressor (Tuned),"Tuned with BayesSearchCV (params: OrderedDict({'regressor__colsample_bytree': 0.7, 'regressor__learning_rate': 0.00940493447158547, 'regressor__max_depth': 9, 'regressor__min_child_samples': 50, 'regressor__n_estimators': 445, 'regressor__num_leaves': 20, 'regressor__reg_alpha': 0.0, 'regressor__reg_lambda': 0.0, 'regressor__subsample': 1.0}))",6.6952
+Ridge Regression,Full-feature regression with 5-Fold CV and Regularization,7.0106
+Ridge Regression (Tuned),Tuned alpha=79.0604 using GridSearchCV,6.9207
+Ridge Regression (Tuned),Full-feature regression with 5-Fold CV and Regularization alpha: 100.0,6.922
+Ridge Regression (Tuned),Feature selection + polynomial features + 5-Fold CV + Best Alpha: 100.0 + Number of Features: 12,6.8989
+Ridge Regression (Tuned),Feature selection and polynomial features with 5-Fold CV Alpha: 10.0 Number of Features: 10,6.9134
+Ridge Regression (tuned),Tuned regression with 5-Fold CV Best Alpha: 112.8838,6.925
+Ridge Regression (Tuned),Feature selection + polynomial features + 5-Fold CV + Best Alpha: 100.0 + Number of Features: 12,6.8989
+Ridge Regression (tuned),"Full-feature regression with Repeated 5-Fold CV and Regularization, alpha selected via two-stage grid search",6.9093
+ElasticNet Regression,Full-feature regression + 5-Fold CV and L1+L2 Regularization,6.9046
+Lasso Regression (tuned),Tuned regression + 5-Fold CV Best Alpha: 0.1623776739188721,6.8673
+Lasso Regression (tuned),"Full-feature regression with Repeated 5-Fold CV and Regularization, alpha selected via two-stage grid search",6.855
+ElasticNet Regression,Full-feature regression + Repeated 5-Fold CV + GridSearch on alpha + L1 ratio,6.8556
+ElasticNet Regression (tuned),"Full-feature regression with Repeated 5-Fold CV and Regularization, alpha and L1 ratio selected via grid search",6.8556
+ExtraTrees Regressor,OneHot + RobustScaler + Repeated 5-Fold CV + GridSearch,6.7031
+HistGradientBoosting Regressor,OneHot + RobustScaler + Repeated 5-Fold CV + GridSearch,6.8525
+NGBoost Regressor,OneHot + RobustScaler + Repeated 5-Fold CV + GridSearch,6.8741
+Stacked Regressor (Ridge + ElasticNet + RandomForest + XGBoost),OneHot + RobustScaler + Repeated 5-Fold CV + Ridge meta-model,6.6822
+Stacked Regressor (Ridge + ElasticNet + XGBoost + LightGBM),OneHot + RobustScaler + Repeated 5-Fold CV + CatBoost meta-model,
+Stacking Regressor (Ridge + ElasticNet + XGBoost + LightGBM + CatBoost),OneHot + RobustScaler + Repeated 5-Fold CV + Stacking,6.6969
+StackNet GradientBoosting Stacking (Layer 1 + Layer 2),Layer 1: Ridge + Lasso + XGBoost; Layer 2: GradientBoostingRegressor; OneHot + RobustScaler + Repeated 5-Fold CV,7.1758
+Voting Ensemble (Tree-Based Only),RandomForest + ExtraTrees + LightGBM + XGBoost; Weighted Voting; OneHot + RobustScaler + Repeated 5-Fold CV,6.8305
+Stacked Regressor (Ridge + ElasticNet + RandomForest + XGBoost),Diverse Feature Sets + OneHot + RobustScaler + Repeated 5-Fold CV + Linear meta-model,6.7051
+Bootstrap Aggregated XGBoost,10 Bootstrapped XGBoost Models + Averaged Predictions + OneHot + RobustScaler + Repeated 5-Fold CV,6.8068
+Voting Regressor (Ridge + Lasso + Random Forest),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV + Manual Weights,6.7149
+Voting Regressor (Ridge + Lasso + ElasticNet),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV + Weighted Voting,6.8695
+Voting Regressor (Ridge + Lasso + Random Forest),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV + Manual Weights,6.7149
+Voting Regressor (Ridge + Lasso + ElasticNet),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV + Manual Weights,6.8685
+Voting Regressor (Ridge + Lasso + ElasticNet),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV,6.5837
+Stacking Regressor (Ridge + Lasso + ElasticNet),OneHot + RobustScaler + Repeated 5-Fold CV + BayesSearchCV + Stacking,6.9007
