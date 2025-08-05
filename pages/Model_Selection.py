@@ -4,10 +4,11 @@ import pandas as pd
 
 from EDA.SubjectModels.de_model.models_info import models as de_models
 
+st.set_page_config(page_title="Model Selection", page_icon='⚙️', layout='wide')
+
 # CSS for custom styling
 st.html("<style> ::selection { color: #7f00ff;} </style>")
 
-st.set_page_config(page_title="Model Selection", page_icon='⚙️', layout='wide')
 
 st.title("⚙️ Model Selection")
 

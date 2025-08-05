@@ -7,12 +7,12 @@ import warnings
 from io import BytesIO
 from sklearn.exceptions import NotFittedError
 
-warnings.filterwarnings("ignore")
+st.set_page_config(page_title="Demo Predict Student Risk", page_icon='🔮', layout='wide')
+# warnings.filterwarnings("ignore")
 
 # CSS for custom styling
 st.html("<style> ::selection { color: #1FFA00;} </style>")
 
-st.set_page_config(page_title="Demo Predict Student Risk", page_icon='🔮', layout='wide')
 
 # Add the correct absolute paths to model directories
 sys.path.append(os.path.abspath("model"))

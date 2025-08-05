@@ -1,0 +1,20 @@
+# Virtual environments
+.env/
+myenv/
+Projects/
+Personal/
+
+# Python cache and compiled files
+__pycache__/
+*.pyc
+
+# Operating System Files
+.DS_Store
+Thumbs.db
+
+# Any large data files or models you don't want to track
+# e.g., large_dataset.csv
+# e.g., trained_model.pkl
+
+# Catboost info (often large and should not be tracked)
+EDA/catboost_info/

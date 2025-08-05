@@ -2,11 +2,12 @@ import streamlit as st
 import os
 from PIL import Image
 
+st.set_page_config(page_title="Model Analysis", page_icon='🔍', layout='centered')
+
 # CSS for custom styling
 st.html("<style> ::selection { color: #7f00ff;} </style>")
 
 # Set page config
-st.set_page_config(page_title="Model Analysis", page_icon='🔍', layout='centered')
 
 st.title("🔍 Model Analysis")
 

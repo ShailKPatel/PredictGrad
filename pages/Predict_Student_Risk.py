@@ -7,10 +7,11 @@ import warnings
 from io import BytesIO
 from sklearn.exceptions import NotFittedError
 
+st.set_page_config(page_title="Predict Student Risk", page_icon='🔮', layout='wide')
+
 # CSS for custom styling
 st.html("<style> ::selection { color: #1FFA00;} </style>")
 
-st.set_page_config(page_title="Predict Student Risk", page_icon='🔮', layout='wide')
 
 warnings.filterwarnings("ignore")
 
@@ -70,7 +71,6 @@ REQUIRED_COLUMNS = [
     "Java-2 Attendance",
 ]
 
-st.set_page_config(page_title="Predict Academic Risk", layout="wide")
 st.title("🎓 Predict Academic Risk of Engineering Students")
 
 st.markdown("""

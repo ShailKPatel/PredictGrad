@@ -1,11 +1,11 @@
 import streamlit as st
+st.set_page_config(page_title="PredictGrad", page_icon='🎓', layout='wide')
 
 # CSS for custom styling
 st.html("<style> ::selection { color: #2EAFFF;} </style>")
 
 
 # Set page configuration
-st.set_page_config(page_title="PredictGrad", page_icon='🎓', layout='wide')
 
 # Title & Tagline
 st.title("PredictGrad")
@@ -13,7 +13,7 @@ st.markdown("### Academic Risk Prediction for Engineering Students")
 
 # Big Picture Introduction
 st.markdown("""
-PredictGrad is a machine learning system designed to detect **students at risk of academic decline** — before it happens.
+PredictGrad is a machine learning system designed to detect **students at risk of academic decline** before it happens.
 
 By analyzing student performance data from the first two semesters, the system forecasts outcomes in Semester 3 and flags students likely to suffer a **significant drop in percentile**. These predictions can power timely academic interventions and prevent long-term damage.
 

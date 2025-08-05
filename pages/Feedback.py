@@ -7,6 +7,8 @@ from collections import Counter, deque
 import re
 import numpy as np
 
+st.set_page_config(page_title="Feedback", layout="centered", page_icon='💬')
+
 # CSS for custom styling
 st.html("<style> ::selection { color: #FF7300;} </style>")
 
@@ -76,7 +78,6 @@ word_count = load_word_count()
 
 # Streamlit UI
 
-st.set_page_config(page_title="Feedback", layout="centered", page_icon='💬')
 
 st.title("📝 Feedback")
 
@@ -88,8 +89,6 @@ with st.container(border=True):
     else:
         st.write("No reviews yet. Be the first to leave your mark! ✨")
 
-    st.write("Select this text and see the custom highlight effect!")
-    st.write("You can use any color you want for the selection.")
 
 with st.container(border=True):
     st.subheader("📊 Word Cloud")
