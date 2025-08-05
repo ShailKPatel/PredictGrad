@@ -7,7 +7,7 @@ import warnings
 from io import BytesIO
 from sklearn.exceptions import NotFittedError
 
-st.set_page_config(page_title="Demo Predict Student Risk", page_icon='🔮', layout='wide')
+st.set_page_config(page_title="Demo Prediction", page_icon='🔮', layout='wide')
 warnings.filterwarnings("ignore")
 
 # CSS for custom styling
