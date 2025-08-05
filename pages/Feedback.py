@@ -79,7 +79,7 @@ word_count = load_word_count()
 # Streamlit UI
 
 
-st.title("📝 Feedback")
+st.title("Feedback")
 
 with st.container(border=True):
     st.subheader("📜 Recent Reviews")

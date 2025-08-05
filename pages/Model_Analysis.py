@@ -9,7 +9,7 @@ st.html("<style> ::selection { color: #7f00ff;} </style>")
 
 # Set page config
 
-st.title("🔍 Model Analysis")
+st.title("Model Analysis")
 
 st.markdown("""
 Welcome to the Model Analysis page of **PredictGrad**.
@@ -56,7 +56,7 @@ with subject_tab:
     
     subject_code = "de"  # Default to Digital Electronics for initial load
         
-    de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"], width=550)
+    de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"], width=600)
         
     with de_tab:
         st.markdown("### Digital Electronics (DE) Model Performance")

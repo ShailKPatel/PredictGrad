@@ -70,8 +70,7 @@ REQUIRED_COLUMNS = [
     "Java-2 Attendance",
 ]
 
-st.set_page_config(page_title="Demo Predict Academic Risk", layout="wide", page_icon='🎓')
-st.title("🎓 Predict Academic Risk of Engineering Students")
+st.title("Demo Prediction of Academic Risk for Engineering Students")
 
 st.markdown("""
 This demo uses a **pre-selected sample dataset** to showcase predictions:

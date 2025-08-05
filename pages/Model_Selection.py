@@ -10,7 +10,7 @@ st.set_page_config(page_title="Model Selection", page_icon='⚙️', layout='wid
 st.html("<style> ::selection { color: #7f00ff;} </style>")
 
 
-st.title("⚙️ Model Selection")
+st.title("Model Selection")
 
 st.markdown("""
 Welcome to the Model Selection page of **PredictGrad**.
@@ -23,7 +23,7 @@ This page provides an overview of the different models used in the project and t
 -  **Performance Metrics**
     - **Mean Absolute Error (MAE)**
             """)   
-           
+
 def show_models(subject):
     model_df = pd.DataFrame(eval(f"{subject}_models"))
     for i in range(len(model_df)):

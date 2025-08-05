@@ -11,7 +11,7 @@ st.html("<style> ::selection { color: #7f00ff;} </style>")
 
 # Page config
 
-st.title("📊 Data Insights")
+st.title("Data Insights")
 st.markdown("""
 Explore the underlying dataset powering PredictGrad. Understand how academic, demographic, and administrative features relate to student performance and academic risk.
 """)

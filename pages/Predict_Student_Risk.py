@@ -71,7 +71,7 @@ REQUIRED_COLUMNS = [
     "Java-2 Attendance",
 ]
 
-st.title("🎓 Predict Academic Risk of Engineering Students")
+st.title("Predict Academic Risk of Engineering Students")
 
 st.markdown("""
 Upload a CSV file with Semester 1 & 2 student data to predict:
