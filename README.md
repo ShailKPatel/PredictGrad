@@ -124,7 +124,7 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 
 **App Link:**
 
-[App Link: Coming Soon]
+[App Link: https://predictgrad.streamlit.app]
 
 **App Pages:**
 

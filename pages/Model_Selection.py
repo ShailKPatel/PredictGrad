@@ -3,13 +3,16 @@ import os
 import pandas as pd
 
 from EDA.SubjectModels.de_model.models_info import models as de_models
+# from EDA.SubjectModels.math3_model.models_info import models as math3_models    
+# from EDA.SubjectModels.fsd_model.models_info import models as fsd_models
+# from EDA.SubjectModels.python_model.models_info import models as python_models
 
 st.set_page_config(page_title="Model Selection", page_icon='⚙️', layout='wide')
 
 # CSS for custom styling
 st.html("<style> ::selection { color: #7f00ff;} </style>")
 
-
+# Page Content
 st.title("Model Selection")
 
 st.markdown("""
@@ -22,43 +25,9 @@ This page provides an overview of the different models used in the project and t
 -  **Approach**
 -  **Performance Metrics**
     - **Mean Absolute Error (MAE)**
-            """)   
+            """)    
 
-def show_models(subject):
-    model_df = pd.DataFrame(eval(f"{subject}_models"))
-    for i in range(len(model_df)):
-        match i:
-            case 0:
-                st.markdown("### Linear Regression")
-            case 4:
-                st.markdown("### Polynomial Regression")
-            case 10:
-                st.markdown("### Support Vector Regression")
-            case 12:
-                st.markdown("### Random Forest Regressor")  
-            case 20:
-                st.markdown("### XGBoost Regressor")
-            case 23:
-                st.markdown("### LightGBM Regressor")
-            case 27:
-                st.markdown("### Ridge Regression")
-            case 35:
-                st.markdown("### Lasso Regression")
-            case 39:
-                st.markdown("### ElasticNet Regression")
-            case 50:
-                st.markdown("### Voting Regressor")
-            case _:
-                pass
-        # Display model details
-        with st.expander(f"Model: {model_df["Model"].iloc[i]} | Approach: {model_df['Approach'].iloc[i]} | MAE: {model_df['MAE'].iloc[i]}"):
-            st.markdown(f"#### Model: {model_df['Model'].iloc[i]}")
-            st.markdown(f"#### Approach: {model_df['Approach'].iloc[i]}")
-            st.metric("Mean Absolute Error (MAE)", model_df['MAE'].iloc[i])
-            st.code(model_df['Code'].iloc[i], language="python")
-    
-de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"])
-
+# Prerequisite Code for all Models
 prerequisite_code = """
 import numpy as np
 import pandas as pd
@@ -125,22 +94,56 @@ for section in ["Section-1", "Section-2", "Section-3"]:
     df[section] = df[section].str[0]
 """
 
-with de_tab:
-    st.markdown("#### Prerequisite Code for DE Models (Used for all DE Models)")
+with st.expander("Prerequisite Code for All Models", expanded=True): 
     st.code(prerequisite_code, language="python")
-    st.markdown("---")
 
-    st.markdown("## Digital Electronics (DE) Models")
-    show_models("de")
+# Subject Tabs    
+de_tab, math3_tab, fsd_tab, python_tab = st.tabs(["Digital Electronics (DE)", "Math-3", "Full Stack Development (FSD)", "Python"])
+
+with de_tab:
+    model_df = pd.DataFrame(de_models)
+
+    for i in range(len(model_df)):
+        match i:
+            case 0:
+                st.markdown("### Linear Regression")
+            case 4:
+                st.markdown("### Polynomial Regression")
+            case 10:
+                st.markdown("### Support Vector Regression")
+            case 12:
+                st.markdown("### Random Forest Regressor")  
+            case 20:
+                st.markdown("### XGBoost Regressor")
+            case 23:
+                st.markdown("### LightGBM Regressor")
+            case 27:
+                st.markdown("### Ridge Regression")
+            case 35:
+                st.markdown("### Lasso Regression")
+            case 39:
+                st.markdown("### ElasticNet Regression")
+            case 50:
+                st.markdown("### Voting Regressor")
+            case _:
+                pass
+        # Display model details
+        with st.expander(f"Model: {model_df["Model"].iloc[i]} | Approach: {model_df['Approach'].iloc[i]} | MAE: {model_df['MAE'].iloc[i]}"):
+            st.markdown(f"#### {model_df['Model'].iloc[i]}")
+            st.markdown(f"#### Approach: {model_df['Approach'].iloc[i]}")
+            st.metric("Mean Absolute Error (MAE)", model_df['MAE'].iloc[i])
+            st.code(model_df['Code'].iloc[i], language="python")
 
 with math3_tab:
-    st.markdown("### Math-3 Model")
+    st.markdown("## Maths-3 Models")
+    # show_models("math3")
 
 with fsd_tab:
-    st.markdown("### Full Stack Development (FSD) Model")
+    st.markdown("## Full Stack Development (FSD) Models")
+    # show_models("fsd")
 
 with python_tab:
-    st.markdown("### Python Model")
-
+    st.markdown("## Python Models")    
+    # show_models("python")
 
 
