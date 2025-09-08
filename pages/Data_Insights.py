@@ -52,8 +52,25 @@ st.plotly_chart(read_json(os.path.join(json_dir, "risk_flag_distribution.json"))
 # 2. Correlation + VIF + Mutual Info
 # show_image("correlation_heatmap.png", "Feature Correlation Heatmap")
 st.plotly_chart(read_json(os.path.join(json_dir, "correlation_heatmap.json")), use_container_width=True)
-show_image("high_correlation_pairs.png", "Highly Correlated Feature Pairs")
-show_image("high_vif_features.png", "Features with High VIF")
+
+st.title("Stage-wise Analysis")
+
+# Stage 1
+st.header("Stage 1")
+col1, col2 = st.columns(2)
+with col1:
+    show_image("corr_stage_1.png", "Highly Correlated Feature Pairs Stage 1")
+with col2:
+    show_image("VIF_stage_1.png", "Features with High VIF Stage 1")
+
+# Stage 2
+st.header("Stage 2")
+col3, col4 = st.columns(2)
+with col3:
+    show_image("corr_stage_2.png", "Highly Correlated Feature Pairs Stage 2")
+with col4:
+    show_image("VIF_stage_2.png", "Features with High VIF Stage 2")
+
 show_image("mutual_information_top25.png", "Top 25 Features by Mutual Information")
 
 # 3. Demographics vs Risk
