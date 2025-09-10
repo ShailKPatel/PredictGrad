@@ -33,7 +33,7 @@ This project uses a structured dataset of academic records collected from a loca
 
 **Key Details:**
 
-* **Source:** Digitized and anonymized academic records
+* **Source:** Digitized academic records, de-identified: no names or enrolment numbers are included
 [**File:** `student_performance_dataset.csv`](https://github.com/ShailKPatel/PredictGrad/blob/main/dataset/student_performance_dataset.csv)* 
 **Total Students:** 905
 * **Features:** 56 columns including demographics, theory and practical marks, and attendance
@@ -46,7 +46,7 @@ This project uses a structured dataset of academic records collected from a loca
 
 **Privacy Measures:**
 
-* All student identifiers have been anonymized.
+* All student records are de-identified: no names or enrolment numbers are included.
 * Gender and Religion were inferred algorithmically from names and may contain classification noise.
 
 This dataset forms the backbone of both regression and classification pipelines in PredictGrad.
@@ -124,7 +124,7 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 
 **App Link:**
 
-[App Link: https://predictgrad.streamlit.app]
+[predictgrad.streamlit.app](https://predictgrad.streamlit.app/)
 
 **App Pages:**
 
@@ -134,6 +134,17 @@ The entire PredictGrad pipeline has been deployed using Streamlit to allow users
 * **Explain Prediction:** Learn about the model’s predictions with the help of Exploratory Data Analysis (EDA) and Explainable AI (XAI) techniques.
 * **Feedback:** Leave comments and suggestions for improvements.
 * **Credits:** Acknowledgements for the tools and contributors involved.
+
+---
+
+## Run Locally
+
+```bash
+git clone https://github.com/ShailKPatel/PredictGrad.git
+cd PredictGrad
+pip install -r requirements.txt
+streamlit run app.py
+```
 
 ---
 

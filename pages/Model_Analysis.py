@@ -161,7 +161,7 @@ with risk_tab:
         ("actual_vs_predicted_confusion_matrix.png", "Confusion Matrix"),
         ("classification_misclass_distribution.png", "Misclassification Distribution"),
         ("grouped_metrics_per_model.png", "Model Metrics Comparison"),
-        ("shap_comparison_base_models.png", "SHAP Comparison Across Base Models")
+        ("shap_comparison_stage2.png", "SHAP Comparison Stage 2")
     ]
 
     for file, caption in classification_figures:
